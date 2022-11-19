@@ -25,7 +25,6 @@ export default function Home() {
     }
 
     if (user) {
-      console.log(user);
       getTodos();
     }
   }, [dispatch, user]);
