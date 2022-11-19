@@ -9,11 +9,14 @@ export default function Home() {
 
   useEffect(() => {
     async function getTodos() {
-      const response = await fetch("http://localhost:3000/api/v1/todos", {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        import.meta.env.VITE_BASE_API_URI + "api/v1/todos",
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
       const data = await response.json();
 
       if (response.ok) {
@@ -29,7 +32,11 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Home</h1>
+      <h1>
+        {import.meta.env.DEV
+          ? import.meta.env.VITE_APP_TITLE
+          : import.meta.env.VITE_APP_TITLE}
+      </h1>
       {todos.map(({ id, todo_name: name }) => (
         <li key={id}>{name}</li>
       ))}
