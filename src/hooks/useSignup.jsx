@@ -11,15 +11,18 @@ export function useSignup() {
     // Reset error at the start of every fetch
     setError(null);
 
-    const response = await fetch("http://localhost:3000/api/v1/users/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        user_name: username,
-        user_email: email,
-        user_password: password,
-      }),
-    });
+    const response = await fetch(
+      import.meta.env.VITE_BASE_API_URI + "api/v1/users/signup",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_name: username,
+          user_email: email,
+          user_password: password,
+        }),
+      }
+    );
     const data = await response.json();
 
     if (!response.ok) {
