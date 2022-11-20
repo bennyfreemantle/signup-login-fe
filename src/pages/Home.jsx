@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useTodoContext } from "../hooks/useTodosContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import TodoForm from "../components/TodoForm/TodoForm";
-import TodoContainer from "../components/TodoContainer/TodoContainer";
+import Todos from "../components/Todos/Todos";
 
 export default function Home() {
   const { todos, dispatch } = useTodoContext();
@@ -41,7 +41,7 @@ export default function Home() {
       </h1>
       <TodoForm />
       {todos.map((todo) => (
-        <TodoContainer key={todo.id} todo={todo} />
+        <Todos key={todo.id} todo={todo} />
       ))}
     </div>
   );

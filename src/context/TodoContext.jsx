@@ -9,6 +9,7 @@ export function todoReducer(state, action) {
         todos: action.payload,
       };
     case "ADD_TODOS":
+      console.log(state);
       return {
         todos: [...state.todos, action.payload],
       };
@@ -16,6 +17,15 @@ export function todoReducer(state, action) {
       return {
         // return all todos apart from the one that was clicked to be deleted
         todos: state.todos.filter((todo) => todo.id !== action.payload.id),
+      };
+    case "EDIT_TODO":
+      return {
+        todos: state.todos.map((todo) => {
+          if (todo.id === action.payload.id) {
+            return { ...todo, todo_name: action.payload.todo_name };
+          }
+          return todo;
+        }),
       };
     default:
       return state;
