@@ -3,11 +3,13 @@ import { useEffect } from "react";
 import { useTodoContext } from "../hooks/useTodosContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import TodoForm from "../components/TodoForm/TodoForm";
+import TodoContainer from "../components/TodoContainer/TodoContainer";
 
 export default function Home() {
   const { todos, dispatch } = useTodoContext();
   const { user } = useAuthContext();
 
+  // Initial load and rerender of todos
   useEffect(() => {
     async function getTodos() {
       const response = await fetch(
@@ -38,8 +40,8 @@ export default function Home() {
           : import.meta.env.VITE_APP_TITLE}
       </h1>
       <TodoForm />
-      {todos.map(({ id, todo_name: name }) => (
-        <li key={id}>{name}</li>
+      {todos.map((todo) => (
+        <TodoContainer key={todo.id} todo={todo} />
       ))}
     </div>
   );

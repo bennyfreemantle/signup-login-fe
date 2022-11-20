@@ -12,6 +12,11 @@ export function todoReducer(state, action) {
       return {
         todos: [...state.todos, action.payload],
       };
+    case "DELETE_TODO":
+      return {
+        // return all todos apart from the one that was clicked to be deleted
+        todos: state.todos.filter((todo) => todo.id !== action.payload.id),
+      };
     default:
       return state;
   }
