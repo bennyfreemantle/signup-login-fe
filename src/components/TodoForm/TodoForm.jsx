@@ -44,7 +44,6 @@ export default function TodoForm() {
     }
     // response is in 200 range
     if (response.ok) {
-      console.log(data);
       // reset our input value to an empty string
       setInput("");
       // reset error back to null (incase previously it was an error)
