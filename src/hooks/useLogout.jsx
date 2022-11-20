@@ -8,9 +8,9 @@ export function useLogout() {
     localStorage.removeItem("user");
     dispatch({ type: "LOGOUT" });
 
-    // Reset the global context to null when a user logs out
+    // Reset the global context to an empty array when a user logs out
     // prevents briefly being able to see the previously logged in users info
-    todoDispatch({ type: "SET_TODOS", payload: null });
+    todoDispatch({ type: "SET_TODOS", payload: [] });
   }
 
   return { logout };
