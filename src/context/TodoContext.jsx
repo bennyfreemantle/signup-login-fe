@@ -5,7 +5,13 @@ export const TodoContext = createContext();
 export function todoReducer(state, action) {
   switch (action.type) {
     case "SET_TODOS":
-      return { todos: action.payload };
+      return {
+        todos: action.payload,
+      };
+    case "ADD_TODOS":
+      return {
+        todos: [...state.todos, action.payload],
+      };
     default:
       return state;
   }
