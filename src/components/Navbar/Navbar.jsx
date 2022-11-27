@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
+import "./Navbar.css";
+
 export function Navbar() {
   const { logout } = useLogout();
   const { user } = useAuthContext();
 
   return (
-    <header>
+    <header className="Navbar">
       <div className="container">
         <Link to="/">
           <h1>Sign up & Login</h1>
