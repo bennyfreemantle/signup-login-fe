@@ -12,7 +12,7 @@ export function useSignup() {
     setError(null);
 
     const response = await fetch(
-      import.meta.env.VITE_BASE_API_URI + "api/v1/users/signup",
+      import.meta.env.VITE_BASE_API_URI + "/api/v1/users/signup",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

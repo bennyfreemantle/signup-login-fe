@@ -13,7 +13,7 @@ export function useLogin() {
     setError(null);
 
     const response = await fetch(
-      import.meta.env.VITE_BASE_API_URI + "api/v1/users/login",
+      import.meta.env.VITE_BASE_API_URI + "/api/v1/users/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
