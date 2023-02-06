@@ -5,6 +5,8 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import TodoForm from "../components/TodoForm/TodoForm";
 import Todos from "../components/Todos/Todos";
 
+const BASE_URI = import.meta.env.VITE_BASE_API_URI;
+
 export default function Home() {
   const { todos, dispatch } = useTodoContext();
   const { user } = useAuthContext();
@@ -12,14 +14,11 @@ export default function Home() {
   // Initial load and rerender of todos
   useEffect(() => {
     async function getTodos() {
-      const response = await fetch(
-        import.meta.env.VITE_BASE_API_URI + "api/v1/todos",
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      const response = await fetch(BASE_URI + "/api/v1/todos", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const data = await response.json();
 
       if (response.ok) {

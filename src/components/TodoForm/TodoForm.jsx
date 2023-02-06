@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useTodoContext } from "../../hooks/useTodosContext";
 
+const BASE_URI = import.meta.env.VITE_BASE_API_URI;
+
 export default function TodoForm() {
   const { dispatch } = useTodoContext();
   const { user } = useAuthContext();
@@ -24,17 +26,14 @@ export default function TodoForm() {
 
     // POST request to our API
     // try add a new todo
-    const response = await fetch(
-      import.meta.env.VITE_BASE_API_URI + "api/v1/todos",
-      {
-        method: "POST",
-        body: JSON.stringify(todo),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    const response = await fetch(BASE_URI + "/api/v1/todos", {
+      method: "POST",
+      body: JSON.stringify(todo),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
     // response from the API server
     const data = await response.json();
 

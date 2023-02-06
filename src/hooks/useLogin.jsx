@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
+const BASE_URI = import.meta.env.VITE_BASE_API_URI;
+
 export function useLogin() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
+
+  console.log(BASE_URI);
 
   async function login(email, password) {
     setIsLoading(true);
@@ -12,17 +16,14 @@ export function useLogin() {
     // Reset error at the start of every fetch
     setError(null);
 
-    const response = await fetch(
-      import.meta.env.VITE_BASE_API_URI + "/api/v1/users/login",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user_email: email,
-          user_password: password,
-        }),
-      }
-    );
+    const response = await fetch(BASE_URI + "/api/v1/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_email: email,
+        user_password: password,
+      }),
+    });
     const data = await response.json();
 
     if (!response.ok) {

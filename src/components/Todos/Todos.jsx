@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useTodoContext } from "../../hooks/useTodosContext";
 
+const BASE_URI = import.meta.env.VITE_BASE_API_URI;
+
 export default function Todos({ todo }) {
   const { todos, dispatch } = useTodoContext();
   const { user } = useAuthContext();
@@ -15,15 +17,12 @@ export default function Todos({ todo }) {
     // confirm was false, return
     if (!result) return;
 
-    const response = await fetch(
-      import.meta.env.VITE_BASE_API_URI + `api/v1/todos/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    const response = await fetch(BASE_URI + `/api/v1/todos/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
     const data = await response.json();
 
     if (response.ok) {
