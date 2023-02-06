@@ -8,6 +8,7 @@ export function useLogin() {
 
   async function login(email, password) {
     setIsLoading(true);
+
     // Reset error at the start of every fetch
     setError(null);
 
